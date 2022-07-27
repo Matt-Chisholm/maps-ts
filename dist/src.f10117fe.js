@@ -136895,6 +136895,10 @@ function () {
     };
   }
 
+  User.prototype.markerContent = function () {
+    return "<h1>User Name: ".concat(this.name, "</h1>");
+  };
+
   return User;
 }();
 
@@ -136927,6 +136931,10 @@ function () {
       lng: parseFloat(faker_1.default.address.longitude())
     };
   }
+
+  Company.prototype.markerContent = function () {
+    return "<div><h1>Company Name: ".concat(this.name, "</h1>, <h3>").concat(this.catchPhrase, "</h3></div>");
+  };
 
   return Company;
 }();
@@ -136965,7 +136973,7 @@ function () {
     });
     marker.addListener('click', function () {
       var infoWindow = new google.maps.InfoWindow({
-        content: 'Hi there!'
+        content: mappable.markerContent()
       });
       infoWindow.open(_this.googleMap, marker);
     });
